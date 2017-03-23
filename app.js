@@ -15,7 +15,7 @@ var Photo = mongoose.model("Photo", photoSchema);
 //add to DB:
 Photo.create({
   name: "red",
-  image: "another url",
+  image: "http://placekitten.com.s3.amazonaws.com/homepage-samples/200/287.jpg",
   description: "description"
 }, function(err, photo) {
   if (err) {
@@ -31,13 +31,22 @@ app.get('/', function (req, res) {
   res.render('landing.ejs');
 });
 
+//main page
 app.get('/photos', function (req, res) {
-  res.render('photos.ejs');
+  Photo.find({}, function(err, allPhotos){
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('photos.ejs', {photos: allPhotos});
+    }
+  });
 });
 
-app.get('/photos/new', function (req, res) {
-  res.render('new.ejs');
+app.post('/photos/new', function (req, res) {
+  // res.render('new.ejs');
+
 });
+
 
 app.get('*', function (req, res) {
   res.redirect('/');
