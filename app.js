@@ -13,28 +13,18 @@ var photoSchema = new mongoose.Schema({
 var Photo = mongoose.model("Photo", photoSchema);
 
 //add to DB:
-var sunset = new Photo({
-  name: "Sunset",
-  image: "Url image",
-  description: "Beautiful orange sunset"
-});
-
-sunset.save(function (err, photo ) {
+Photo.create({
+  name: "red",
+  image: "another url",
+  description: "description"
+}, function(err, photo) {
   if (err) {
-    console.log('ERR!');
+    console.log("ERR");
   } else {
-    console.log('Saved to db!!');
-    console.log('here is photo', photo);
+    console.log(photo);
   }
 });
 
-Photo.find({}, function(err, photos){
-  if (err) {
-    console.log('errrrr!');
-  } else {
-    console.log(photos);
-  }
-});
 
 app.get('/', function (req, res) {
   console.log('landing pg!');
