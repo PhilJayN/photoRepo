@@ -6,6 +6,10 @@ app.get('/', function (req, res) {
   res.render('landing.ejs');
 });
 
+app.get('/photos', function (req, res) {
+  res.render('photos.ejs');
+});
+
 app.get('*', function (req, res) {
   res.redirect('/');
 });
