@@ -1,5 +1,8 @@
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/photos_app");
@@ -26,16 +29,16 @@ var Photo = mongoose.model("Photo", photoSchema);
 // });
 
 //ROUTES
-app.get('/404', function (req, res) {
-  res.render('pagenotfound.ejs');
-});
+// app.get('/404', function (req, res) {
+//   res.render('pagenotfound.ejs');
+// });
 
 app.get('/', function (req, res) {
   console.log('landing pg!');
   res.render('landing.ejs');
 });
 
-//main page
+//shows all photos from DB
 app.get('/photos', function (req, res) {
   Photo.find({}, function(err, allPhotos){
     if (err) {
@@ -46,12 +49,17 @@ app.get('/photos', function (req, res) {
   });
 });
 
-app.get('/photos/new', function(req, res){
-  res.render('new.ejs');
-});
+//shows upload pg where users add photo
+  // app.get('/photos/addPhoto', function(req, res){
+  //   res.render('new.ejs');
+  // });
 
 //add to DB on submit btn click:
-app.post('/photos', function (req, res) {
+//when there's a POST request to /photos/addPhoto...
+app.post('/photos/addPhoto', function (req, res) {
+  console.log('POST REQUEST START!');
+  console.log('body parsed', req.body);
+  //run these codes:
   var name = req.body.name;
   var image = req.body.image;
   var description = req.body.description;
@@ -61,7 +69,7 @@ app.post('/photos', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/photos');
+      res.redirect('/');
     }
   });
 });

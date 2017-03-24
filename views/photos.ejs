@@ -1,13 +1,42 @@
 <h1>Photos page!</h1>
 
+<h1>Upload a New Photo!</h1>
 
+  <form action="/photos/addPhoto" method="POST">
+      <input type="text" name="name" placeholder="Name of Photo">
+      <input type="text" name="image" placeholder="Image URL">
+      <input type="text" name="description" placeholder="Description of Photo">
+      <button type="button" name="button">Submit</button>
+  </form>
+
+
+<form action="/photos/addPhoto" method="POST">
+        <input class="form-control" type="text" name="name" placeholder="name">
+        <input class="form-control" type="text" name="image" placeholder="image url">
+        <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+</form>
+<a href="/campgrounds">Go Back</a>
+
+<p>
+  try
+</p>
+<form action="photos/addPhoto" method="POST">
+  <input type="text" name="name" placeholder="placeholder">
+  <input type="text" name="image" placeholder="image">
+  <button>Sub!!</button>
+</form>
+
+
+
+
+<!--
   <div class="test">
     <% photos.forEach(function(photo) { %>
     <img src="<%= photo.image %>" alt="test alt" />
     <h4><%= photo.name %> </h4>
 <% }); %>
-</div>
+</div> -->
 
-<p>
+<!-- <p>
   <a href="/views/new.ejs">Add New Photos</a>
-</p>
+</p> -->
