@@ -28,6 +28,7 @@ var Photo = mongoose.model("Photo", photoSchema);
 //   }
 // });
 
+
 //ROUTES
 // app.get('/404', function (req, res) {
 //   res.render('pagenotfound.ejs');
@@ -69,7 +70,7 @@ app.post('/photos/addPhoto', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/');
+      res.redirect('/photos');
     }
   });
 });
