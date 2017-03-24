@@ -8,20 +8,6 @@
 <% }); %>
 </div>
 
-
-
- <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-     <!--campgrounds is coming from the DB. it's the collections name -->
-    <% photos.forEach(function(photo){ %>
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail">
-               <img src="<%= photo.image %>">
-               <div class="caption">
-                   <h4><%= photo.name %></h4>
-               </div>
-               <p>
-               </p>
-            </div>
-        </div>
-    <% }); %>
-</div>
+<p>
+  <a href="/views/new.ejs">Add New Photos</a>
+</p>
