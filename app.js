@@ -15,6 +15,7 @@ var photoSchema = new mongoose.Schema({
 
 var Photo = mongoose.model("Photo", photoSchema);
 
+console.log('Photo', Photo);
 //add to DB:
 // Photo.create({
 //   name: "red",

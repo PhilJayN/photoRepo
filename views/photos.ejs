@@ -1,6 +1,7 @@
+<% include partials/header %>
 <h1>Photos page!</h1>
 
-<h1>Upload a New Photo!</h1>
+<h1 >Add a New Photo!</h1>
 
   <form action="/photos/addPhoto" method="POST">
       <input type="text" name="name" placeholder="Name of Photo">
@@ -15,6 +16,14 @@
     <h4><%= photo.name %> </h4>
 <% }); %>
 
+
+<button class="btn btn-primary"></button>
 <!-- <p>
   <a href="/views/new.ejs">Add New Photos</a>
 </p> -->
+
+<button class="btn btn-default" type="submit">Button</button>
+
+<button type="button" class="btn btn-warning">Warning</button>
+
+<% include partials/footer %>
