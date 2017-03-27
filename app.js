@@ -1,3 +1,9 @@
+// var browserSync = require('browser-sync');
+// var bs = browserSync({ port: 3030 });
+// app.use(require('connect-browser-sync')(bs));
+
+
+
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
