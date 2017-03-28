@@ -2,8 +2,6 @@
 // var bs = browserSync({ port: 3030 });
 // app.use(require('connect-browser-sync')(bs));
 
-
-
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -11,7 +9,8 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/photos_app");
+mongoose.connect("mongodb://localhost/test_app");
+// mongoose.connect("mongodb://localhost/photos_app_test");
 
 var photoSchema = new mongoose.Schema({
   name: String,
@@ -21,7 +20,6 @@ var photoSchema = new mongoose.Schema({
 
 var Photo = mongoose.model("Photo", photoSchema);
 
-console.log('Photo', Photo);
 //add to DB:
 // Photo.create({
 //   name: "red",
@@ -43,7 +41,13 @@ console.log('Photo', Photo);
 
 app.get('/', function (req, res) {
   console.log('landing pg!');
-  res.render('landing.ejs');
+  Photo.find({}, function(err, allPhotos){
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('landing.ejs');
+    }
+  });
 });
 
 //shows all photos from DB
@@ -57,10 +61,17 @@ app.get('/photos', function (req, res) {
   });
 });
 
+app.get('/test', function (req, res) {
+      res.render('photos.ejs');
+});
+
+
 //shows upload pg where users add photo
-  // app.get('/photos/addPhoto', function(req, res){
-  //   res.render('new.ejs');
+  // app.get('/photos/testnew', function(req, res){
+  //   res.render('photos.ejs');
   // });
+  //
+
 
 //add to DB on submit btn click:
 //when there's a POST request to /photos/addPhoto...
