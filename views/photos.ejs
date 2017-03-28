@@ -1,6 +1,5 @@
 <% include partials/header %>
 <h1>Photos page!</h1>
-
 <h1 >Add a New Photo!</h1>
 
   <form action="/photos/addPhoto" method="POST">
@@ -15,27 +14,15 @@
         <% photos.forEach(function(photo){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                   <img src="<%= campground.image %>">
+                   <img src="<%= photo.image %>">
                    <div class="caption">
                        <h4><%= photo.name %></h4>
                    </div>
-                   <p>
-                       <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
-                   </p>
                 </div>
             </div>
         <% }); %>
     </div>
 
-
-<button class="btn btn-primary"></button>
-<p>
-  <a href="/photos/testnew">test Add New Photos</a>
-</p>
-
-<button class="btn btn-default" type="submit">Button</button>
-
 <button type="button" class="btn btn-warning">Warning</button>
-
 
 <% include partials/footer %>
