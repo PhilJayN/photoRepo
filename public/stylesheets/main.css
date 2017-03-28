@@ -1,0 +1,47 @@
+/*Colors*/
+/*Primary: #80CBC4*/
+/*Borders: #7DB0D8*/
+/*Primary btn: */
+
+.navbar {
+   background-color: #80CBC4;
+   border-radius: 0;
+   color: red;
+}
+
+.nav {
+  color: rgb(68, 68, 68);
+}
+
+
+.navbar-nav {
+  color: rgb(68, 68, 68);
+
+}
+
+.btn-info {
+  color: rgb(68, 68, 68);
+  background-color: #80CBC4;
+}
+
+.btn-info:hover{
+  background-color: #26A69A;
+}
+
+.btn-primary {
+  color: rgb(68, 68, 68);
+  background-color: #7DB0D8;
+}
+
+.btn-primary:hover{
+  background-color: #7EB1D9;
+}
+
+.form-control:focus {
+  border-color: #7DD87E;
+}
+
+
+/*.navbar-default {
+   border: 1px solid blue;
+}*/
