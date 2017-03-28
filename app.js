@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname + "/public"));
 
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/photos_app");
@@ -55,7 +56,6 @@ app.get('/photos', function (req, res) {
 //when there's a POST request to /photos/addPhoto...
 app.post('/photos/addPhoto', function (req, res) {
   console.log('POST REQUEST START!');
-  console.log('body parsed', req.body);
   //run these codes:
   var name = req.body.name;
   var image = req.body.image;
