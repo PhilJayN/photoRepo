@@ -76,7 +76,7 @@ app.get('/photos', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render('photos.ejs', {photos: allPhotos, currentUser: req.user});
+      res.render('photos.ejs', {photos: allPhotos});
     }
   });
 });
