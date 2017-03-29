@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
+var User = require("./models/user");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
@@ -10,6 +11,12 @@ app.use(express.static(__dirname + "/public"));
 
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/photos_app");
+
+app.use(require("express-session")({
+  secret: "This is the super duper secrete hashing powder",
+  resave: false,
+  saveUninitialized: false
+}));
 
 var photoSchema = new mongoose.Schema({
   name: String,
@@ -31,6 +38,17 @@ var Photo = mongoose.model("Photo", photoSchema);
 //     console.log(photo);
 //   }
 // });
+
+
+//setup PASSPORT
+passport.use(new LocalStrategy(User.authenticate()));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//setup session, encoding, and decoding for passport:
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 //ROUTES
 app.get('/', function (req, res) {
