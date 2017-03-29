@@ -92,7 +92,7 @@ app.post('/photos/addPhoto', function (req, res) {
   });
 });
 
-app.get('/secret', function (req, res) {
+app.get('/secret', isLoggedIn, function (req, res) {
   res.render('secret.ejs');
 });
 
@@ -121,18 +121,26 @@ app.get('/login', function(req, res) {
   res.render('login.ejs');
 });
 
-
+app.post('/login', passport.authenticate("local", {
+  successRedirect: '/secret.ejs',
+  failureRedirect: '/login.ejs'
+}), function(req, res) {
+  res.render('secret.ejs');
+});
 
 //ROUTES: LOGOUT
 app.get('/logout', function(req, res) {
-  res.render('landing.ejs');
+  req.logout();
+  res.redirect('/');
 });
 
-app.get('/test', function (req, res) {
-  res.render('test.ejs');
-});
-
-
+//middleware for logged in
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 app.get('*', function (req, res) {
   // res.redirect('/404');
