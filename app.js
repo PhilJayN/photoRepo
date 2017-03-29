@@ -12,6 +12,7 @@ app.use(express.static(__dirname + "/public"));
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/photos_app");
 
+//PASSPORT CONFIGURATION
 app.use(require("express-session")({
   secret: "This is the super duper secrete hashing powder",
   resave: false,
@@ -122,11 +123,11 @@ app.get('/login', function(req, res) {
 });
 
 app.post('/login', passport.authenticate("local", {
-  successRedirect: '/secret.ejs',
-  failureRedirect: '/login.ejs'
+  successRedirect: '/secret',
+  failureRedirect: '/login' //make sure this is /login, and NOT login.ejs. it's a route
 }), function(req, res) {
-  res.render('secret.ejs');
 });
+
 
 //ROUTES: LOGOUT
 app.get('/logout', function(req, res) {
