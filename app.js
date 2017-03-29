@@ -92,8 +92,27 @@ app.post('/photos/addPhoto', function (req, res) {
   });
 });
 
+
+//AUTHENTICATION ROUTES
+//show the sign up form
+// app.get('/register', function(req, res) {
+//   res.render('landing.ejs');
+// });
+
+app.get('/register', function (req, res) {
+  // res.redirect('/404');
+  res.render('register.ejs');
+});
+
+app.get('/test', function (req, res) {
+  // res.redirect('/404');
+  res.render('test.ejs');
+});
+
+
 app.get('*', function (req, res) {
-  res.redirect('/404');
+  // res.redirect('/404');
+  res.render('pagenotfound.ejs');
 });
 
 app.listen(3000, function () {
