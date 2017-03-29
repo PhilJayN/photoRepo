@@ -12,12 +12,6 @@ app.use(express.static(__dirname + "/public"));
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/photos_app");
 
-//PASSPORT CONFIGURATION
-app.use(require("express-session")({
-  secret: "This is the super duper secrete hashing powder",
-  resave: false,
-  saveUninitialized: false
-}));
 
 var photoSchema = new mongoose.Schema({
   name: String,
@@ -40,6 +34,12 @@ var Photo = mongoose.model("Photo", photoSchema);
 //   }
 // });
 
+//PASSPORT CONFIGURATION
+app.use(require("express-session")({
+  secret: "This is the super duper secrete hashing powder",
+  resave: false,
+  saveUninitialized: false
+}));
 
 //setup PASSPORT
 passport.use(new LocalStrategy(User.authenticate()));
@@ -50,6 +50,12 @@ app.use(passport.session());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//middleware: fxn will be called on every route:
+//this way every page will have currentUser data
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 //ROUTES
 app.get('/', function (req, res) {
@@ -65,11 +71,12 @@ app.get('/', function (req, res) {
 
 //shows all photos from DB
 app.get('/photos', function (req, res) {
+  console.log('user stuff', req.user);
   Photo.find({}, function(err, allPhotos){
     if (err) {
       console.log(err);
     } else {
-      res.render('photos.ejs', {photos: allPhotos});
+      res.render('photos.ejs', {photos: allPhotos, currentUser: req.user});
     }
   });
 });
@@ -95,6 +102,8 @@ app.post('/photos/addPhoto', function (req, res) {
 
 app.get('/secret', isLoggedIn, function (req, res) {
   res.render('secret.ejs');
+  console.log('user stuff', req.user);
+
 });
 
 
