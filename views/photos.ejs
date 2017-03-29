@@ -25,6 +25,7 @@
   <div class="row text-center" style="display:flex; flex-wrap: wrap;">
          <!--campgrounds is a collection from the yelp_camp DB-->
         <% photos.forEach(function(photo){ %>
+
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                    <img src="<%= photo.image %>">
@@ -33,7 +34,9 @@
                    </div>
                 </div>
             </div>
+
         <% }); %>
     </div>
   </div>  <!--end of container-->
+
 <% include partials/footer %>

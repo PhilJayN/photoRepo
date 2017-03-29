@@ -45,3 +45,8 @@
 /*.navbar-default {
    border: 1px solid blue;
 }*/
+
+.pink {
+  background: pink;
+  border: 1px solid red;
+}
