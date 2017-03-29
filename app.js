@@ -92,22 +92,46 @@ app.post('/photos/addPhoto', function (req, res) {
   });
 });
 
+app.get('/secret', function (req, res) {
+  res.render('secret.ejs');
+});
 
-//AUTHENTICATION ROUTES
+
+//ROUTES: AUTHENTICATION
 //show the sign up form
-// app.get('/register', function(req, res) {
-//   res.render('landing.ejs');
-// });
-
 app.get('/register', function (req, res) {
-  // res.redirect('/404');
   res.render('register.ejs');
 });
 
+//handlers user sign up:
+app.post('/register', function (req, res) {
+  User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+    if(err) {
+      console.log(err);
+      return res.render("register");
+    }
+    passport.authenticate("local")(req, res, function(){
+      res.redirect("/secret");
+    });
+  });
+});
+
+//ROUTES: LOGIN
+app.get('/login', function(req, res) {
+  res.render('login.ejs');
+});
+
+
+
+//ROUTES: LOGOUT
+app.get('/logout', function(req, res) {
+  res.render('landing.ejs');
+});
+
 app.get('/test', function (req, res) {
-  // res.redirect('/404');
   res.render('test.ejs');
 });
+
 
 
 app.get('*', function (req, res) {
