@@ -71,12 +71,23 @@ app.get('/', function (req, res) {
 
 //shows all photos from DB
 app.get('/photos', function (req, res) {
-  console.log('user stuff', req.user);
   Photo.find({}, function(err, allPhotos){
     if (err) {
       console.log(err);
     } else {
-      res.render('photos.ejs', {photos: allPhotos});
+      res.render('index.ejs', {photos: allPhotos});
+    }
+  });
+});
+
+//shows individual photos
+app.get('/photos/:id', function (req, res){
+  //name :id with anything you want.
+  Photo.findById(req.params.id, function(err, foundPhoto) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('show.ejs', {photo: foundPhoto});
     }
   });
 });
