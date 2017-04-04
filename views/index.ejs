@@ -3,8 +3,7 @@
 <div class="container">
   <h1>Photos page!</h1>
   <h1 >Add a New Photo!</h1>
-
-  <form action="/photos/addPhoto" method="POST">
+  <form action="/photos/new" method="POST">
     <div class="form-group">
       <label for="nameOfPhoto">Name of Photo</label>
       <input type="text" name="name" class="form-control" id="nameOfPhoto" placeholder="Name of Photo">
@@ -31,7 +30,6 @@
                    <img src="<%= photo.image %>">
                    <div class="caption">
                        <h4><%= photo.name %></h4>
-                       <h4><%= photo._id %></h4>
                    </div>
                    <p>
                      <!--during creation, every anchor tag has a ref to its own id-->

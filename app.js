@@ -94,7 +94,7 @@ app.get('/photos/:id', function (req, res){
 
 //add to DB on submit btn click:
 //when there's a POST request to /photos/addPhoto...
-app.post('/photos/addPhoto', function (req, res) {
+app.post('/photos/new', function (req, res) {
   console.log('POST REQUEST START!');
   //run these codes:
   var name = req.body.name;
@@ -114,9 +114,7 @@ app.post('/photos/addPhoto', function (req, res) {
 app.get('/secret', isLoggedIn, function (req, res) {
   res.render('secret.ejs');
   console.log('user stuff', req.user);
-
 });
-
 
 //ROUTES: AUTHENTICATION
 //show the sign up form
@@ -136,6 +134,19 @@ app.post('/register', function (req, res) {
     });
   });
 });
+
+//ROUTES: COMMENTS
+//show new form to create comments:
+app.get('/photos/:id/comments/new', function(req, res) {
+  Photo.findById(req.params.id, function(err, photo) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('comments/new.ejs', {photo: photo});
+    }
+  });
+});
+
 
 //ROUTES: LOGIN
 app.get('/login', function(req, res) {
@@ -162,6 +173,10 @@ function isLoggedIn(req, res, next) {
   }
   res.redirect('/login');
 }
+
+app.get('/demo', function (req, res) {
+  res.render('demo.ejs');
+});
 
 app.get('*', function (req, res) {
   // res.redirect('/404');
