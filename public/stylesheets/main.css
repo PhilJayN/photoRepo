@@ -42,11 +42,23 @@
 }
 
 
-/*.navbar-default {
-   border: 1px solid blue;
-}*/
-
-.pink {
+/*.pink {
   background: pink;
   border: 1px solid red;
+}*/
+
+
+.well {
+  background-color: #EAEAE8;
+   margin-bottom: .5em;
+}
+
+.well-accent-bar {
+  padding: 1.5em;
+  background-color: #E9E4DE;
+  border-radius: 4px;
+}
+
+.thumbnail img {
+  /*width: 100%;*/
 }

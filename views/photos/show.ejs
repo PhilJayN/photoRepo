@@ -2,34 +2,55 @@
 
 <h1>show pg!</h1>
 
-<p>
-  <%= photo.name %>
-</p>
+<div class="container">
 
-<p>
-  <img src="  <%= photo.image %> " alt="" />
-</p>
+  <div class="row">
+    <div class="col-md-3">
+      Side bar left
+    </div>
+      <div class="col-md-9">
+        <div class="thumbnail">
+        <p>
+          <%= photo.name %>
+        </p>
 
-<p>
-  <%= photo.description %>
-</p>
+        <p>
+          <img src="  <%= photo.image %> " alt="" />
+        </p>
+        <p>
+          <%= photo.description %>
+        </p>
+      </div>
 
-<p>
-  <a href="/photos/<%= photo._id %>/comments/new">Add a comment</a>
-</p>
+      <div class="well">
+        <p>
+          <% photo.comments.forEach(function(comment){ %>
+            <p>
+              <strong><%= comment.author %></strong> : <%= comment.text %>
+            </p>
+          <% }) %>
+        </p>
+      </div>
 
-<p>
-  User commments:
-</p>
+      <div class="well-accent-bar">
+        <p>
+          <a class="btn btn-default" href="/photos/<%= photo._id %>/comments/new">Add a comment</a>
+        </p>
+      </div>
 
-<p>
-  <% photo.comments.forEach(function(comment){ %>
-    <% console.log(comment) %>
 
-    <p>
-      <strong><%= comment.author %></strong> : <%= comment.text %>
-    </p>
-  <% }) %>
-</p>
+    </div>
+  </div>
 
+</div>
+
+<!--
+<div class="container">
+  <div class="row pink">
+    row
+    <div class="col-md-6 pink">
+        col
+    </div>
+  </div>
+</div> -->
 <% include ../partials/footer %>
