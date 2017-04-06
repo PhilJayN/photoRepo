@@ -15,11 +15,14 @@
         </p>
 
         <p>
-          <img src="  <%= photo.image %> " alt="" />
+          <img class="img-responsive" src="  <%= photo.image %> " alt="" />
         </p>
-        <p>
-          <%= photo.description %>
-        </p>
+
+        <div class="caption-full">
+          <p>
+            <%= photo.description %>
+          </p>
+        </div>
       </div>
 
       <div class="well">
