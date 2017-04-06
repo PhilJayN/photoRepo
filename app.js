@@ -86,7 +86,7 @@ app.post('/photos', function (req, res) {
 //SHOW Route: Show more info about one photo
 app.get('/photos/:id', function (req, res){
   //name :id with anything you want.
-  Photo.findById(req.params.id, function(err, foundPhoto) { //foundPhoto is a object, so you can use dot notation on it.
+  Photo.findById(req.params.id).populate("comments").exec(function(err, foundPhoto) { //foundPhoto is a object, so you can use dot notation on it.
     if (err) {
       console.log(err);
     } else {
@@ -145,7 +145,7 @@ app.post('/photos/:id/comments', function(req, res){
         } else {
           photo.comments.push(comment);
           photo.save();
-          res.redirect("/photos/" + photo._id);  
+          res.redirect("/photos/" + photo._id);
         }
       });
     }
