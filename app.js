@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var User = require("./models/user");
+var Photo = require("./models/photo");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
@@ -12,27 +13,6 @@ app.use(express.static(__dirname + "/public"));
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/photos_app");
 
-
-var photoSchema = new mongoose.Schema({
-  name: String,
-  image: String,
-  description: String
-});
-
-var Photo = mongoose.model("Photo", photoSchema);
-
-//add to DB:
-// Photo.create({
-//   name: "red",
-//   image: "http://placekitten.com.s3.amazonaws.com/homepage-samples/200/287.jpg",
-//   description: "description"
-// }, function(err, photo) {
-//   if (err) {
-//     console.log("ERR");
-//   } else {
-//     console.log(photo);
-//   }
-// });
 
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -83,7 +63,7 @@ app.get('/photos', function (req, res) {
 //shows individual photos
 app.get('/photos/:id', function (req, res){
   //name :id with anything you want.
-  Photo.findById(req.params.id, function(err, foundPhoto) {
+  Photo.findById(req.params.id, function(err, foundPhoto) { //foundPhoto is a object, so you can use dot notation on it.
     if (err) {
       console.log(err);
     } else {
@@ -95,7 +75,6 @@ app.get('/photos/:id', function (req, res){
 //add to DB on submit btn click:
 //when there's a POST request to /photos/addPhoto...
 app.post('/photos/new', function (req, res) {
-  console.log('POST REQUEST START!');
   //run these codes:
   var name = req.body.name;
   var image = req.body.image;
@@ -145,6 +124,11 @@ app.get('/photos/:id/comments/new', function(req, res) {
       res.render('comments/new.ejs', {photo: photo});
     }
   });
+});
+
+app.post('/photos/:id/comments', function(req, res){
+  res.send('post request to comments');
+
 });
 
 
