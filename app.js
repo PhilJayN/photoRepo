@@ -135,9 +135,31 @@ app.get('/photos/:id/comments/new', function(req, res) {
 });
 
 app.post('/photos/:id/comments', function(req, res){
-  res.send('post request to comments');
-  //add to db
+  Photo.findById(req.params.id, function(err, photo) {
+    if(err) {
+      console.log(err);
+    } else {
+      Comment.create(req.body.comment, function(err, comment) {
+        if(err) {
+          console.log(err);
+        } else {
+          photo.comments.push(comment);
+          photo.save();
+          res.redirect("/photos/" + photo._id);  
+        }
+      });
+    }
+  });
 });
+
+
+
+
+
+
+
+
+
 
 
 //ROUTES: LOGIN

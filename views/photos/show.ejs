@@ -18,4 +18,18 @@
   <a href="/photos/<%= photo._id %>/comments/new">Add a comment</a>
 </p>
 
+<p>
+  User commments:
+</p>
+
+<p>
+  <% photo.comments.forEach(function(comment){ %>
+    <% console.log(comment) %>
+
+    <p>
+      <%= comment.text %>
+    </p>
+  <% }) %>
+</p>
+
 <% include ../partials/footer %>
