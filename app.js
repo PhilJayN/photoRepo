@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var User = require("./models/user");
 var Photo = require("./models/photo");
+var Comment = require('./models/comment');
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
@@ -54,7 +55,7 @@ app.get('/photos', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render('index.ejs', {photos: allPhotos});
+      res.render('photos/index.ejs', {photos: allPhotos});
     }
   });
 });
@@ -89,7 +90,7 @@ app.get('/photos/:id', function (req, res){
     if (err) {
       console.log(err);
     } else {
-      res.render('show.ejs', {photo: foundPhoto});
+      res.render('photos/show.ejs', {photo: foundPhoto});
     }
   });
 });
