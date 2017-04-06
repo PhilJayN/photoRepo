@@ -39,7 +39,6 @@ app.use(function(req, res, next) {
 
 //ROUTES
 app.get('/', function (req, res) {
-  console.log('landing pg!');
   Photo.find({}, function(err, allPhotos){
     if (err) {
       console.log(err);
@@ -49,7 +48,7 @@ app.get('/', function (req, res) {
   });
 });
 
-//shows all photos from DB
+//INDEX route: display all photos from DB in index pg
 app.get('/photos', function (req, res) {
   Photo.find({}, function(err, allPhotos){
     if (err) {
@@ -60,21 +59,14 @@ app.get('/photos', function (req, res) {
   });
 });
 
-//shows individual photos
-app.get('/photos/:id', function (req, res){
-  //name :id with anything you want.
-  Photo.findById(req.params.id, function(err, foundPhoto) { //foundPhoto is a object, so you can use dot notation on it.
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('show.ejs', {photo: foundPhoto});
-    }
-  });
+//NEW Route: Show form to create new photo
+app.get('/photos/new', function(req, res){
+  res.render('photos/new.ejs');
 });
 
-//add to DB on submit btn click:
+//CREATE Route: add to DB
 //when there's a POST request to /photos/addPhoto...
-app.post('/photos/new', function (req, res) {
+app.post('/photos', function (req, res) {
   //run these codes:
   var name = req.body.name;
   var image = req.body.image;
@@ -89,6 +81,21 @@ app.post('/photos/new', function (req, res) {
     }
   });
 });
+
+//SHOW Route: Show more info about one photo
+app.get('/photos/:id', function (req, res){
+  //name :id with anything you want.
+  Photo.findById(req.params.id, function(err, foundPhoto) { //foundPhoto is a object, so you can use dot notation on it.
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('show.ejs', {photo: foundPhoto});
+    }
+  });
+});
+
+
+
 
 app.get('/secret', isLoggedIn, function (req, res) {
   res.render('secret.ejs');
