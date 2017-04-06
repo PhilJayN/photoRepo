@@ -96,7 +96,6 @@ app.get('/photos/:id', function (req, res){
 
 
 
-
 app.get('/secret', isLoggedIn, function (req, res) {
   res.render('secret.ejs');
   console.log('user stuff', req.user);
@@ -122,20 +121,21 @@ app.post('/register', function (req, res) {
 });
 
 //ROUTES: COMMENTS
+//NEW
 //show new form to create comments:
 app.get('/photos/:id/comments/new', function(req, res) {
-  Photo.findById(req.params.id, function(err, photo) {
+  Photo.findById(req.params.id, function(err, foundPhoto) {
     if (err) {
       console.log(err);
     } else {
-      res.render('comments/new.ejs', {photo: photo});
+      res.render('comments/new.ejs', {photo: foundPhoto});
     }
   });
 });
 
 app.post('/photos/:id/comments', function(req, res){
   res.send('post request to comments');
-
+  //add to db
 });
 
 
