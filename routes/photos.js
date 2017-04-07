@@ -49,6 +49,25 @@ router.get('/photos/:id', function (req, res){
   });
 });
 
+//EDIT
+router.get('/photos/:id/edit', function(req, res) {
+  Photo.findById(req.params.id, function(err, foundPhoto) {
+    if (err) {
+      res.redirect('/photos');
+      console.log (err);
+    } else {
+      res.render('photos/edit.ejs', {photo: foundPhoto});
+    }
+  });
+});
+
+
+router.put('/photos/id', function(req, res) {
+
+})
+
+//UPDATE
+
 //middleware for logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
