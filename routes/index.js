@@ -42,7 +42,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate("local", {
-  successRedirect: '/secret',
+  successRedirect: '/photos/new',
   failureRedirect: '/login' //make sure this is /login, and NOT login.ejs. it's a route
 }), function(req, res) {
 });

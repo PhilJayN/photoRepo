@@ -15,23 +15,28 @@ router.get('/photos', function (req, res) {
 });
 
 //NEW Route: Show form to create new photo
-router.get('/photos/new', function(req, res){
+router.get('/photos/new', isLoggedIn, function(req, res){
   res.render('photos/new.ejs');
 });
 
 //CREATE Route: add to DB
 //when there's a POST request to /photos/addPhoto...
-router.post('/photos', function (req, res) {
+router.post('/photos', isLoggedIn, function (req, res) {
   //run these codes:
   var name = req.body.name;
   var image = req.body.image;
   var description = req.body.description;
+  var author = {
+    id: req.user._id,
+    username: req.user.username
+  };
   //takes data from variables name and image, and stores into an obj:
-  var newImage = {name: name, image: image, description: description};
+  var newImage = {name: name, image: image, description: description, author: author};
   Photo.create(newImage, function(err, newlyCreated){
     if (err) {
       console.log(err);
     } else {
+      console.log('newlyCreated', newlyCreated);
       res.redirect('/photos');
     }
   });
@@ -86,7 +91,7 @@ function isLoggedIn(req, res, next) {
 
 router.get('/secret', isLoggedIn, function (req, res) {
   res.render('secret.ejs');
-  console.log('user stuff', req.user);
+  // console.log('user stuff', req.user);
 });
 
 module.exports = router;
