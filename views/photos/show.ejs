@@ -23,6 +23,14 @@
             <%= photo.description %>
           </p>
         </div>
+        <p>
+          Submitted by <%= photo.name %>
+        </p>
+
+        <p>
+          <a class="btn btn-default" href="/photos/<%= photo._id %>/edit">Edit</a>
+        </p>
+
       </div>
 
       <div class="well">
