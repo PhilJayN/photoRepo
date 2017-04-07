@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router({mergeParams: true});
-var Photo = require("../models/photo");
-var Comment = require("../models/comment");
 var passport = require("passport");
 var User = require("../models/user");
+var Photo = require("../models/photo");
+var Comment = require("../models/comment");
 
 //ROUTES
 router.get('/', function (req, res) {

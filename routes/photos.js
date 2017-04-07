@@ -1,9 +1,7 @@
+// var router = express.Router({mergeParams: true});
 var express = require("express");
-var router = express.Router({mergeParams: true});
+var router = express.Router();
 var Photo = require("../models/photo");
-var Comment = require("../models/comment");
-
-
 
 //INDEX route: display all photos from DB in index pg
 router.get('/photos', function (req, res) {

@@ -16,6 +16,7 @@ router.get('/photos/:id/comments/new', function(req, res) {
   });
 });
 
+//CREATE
 router.post('/photos/:id/comments', function(req, res){
   Photo.findById(req.params.id, function(err, photo) {
     if(err) {
@@ -33,5 +34,13 @@ router.post('/photos/:id/comments', function(req, res){
     }
   });
 });
+
+//middleware for logged in
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 module.exports = router;
