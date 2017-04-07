@@ -66,7 +66,7 @@ router.get('/photos/:id/edit', function(req, res) {
   });
 });
 
-
+//UPDATE
 router.put('/photos/:id', function(req, res) {
   Photo.findByIdAndUpdate(req.params.id, req.body.photo, function(err, updatedPhoto) {
     if (err) {
@@ -78,7 +78,17 @@ router.put('/photos/:id', function(req, res) {
 
 });
 
-//UPDATE
+//DESTROY
+router.delete('/photos/:id', function(req, res) {
+  Photo.findByIdAndRemove(req.params.id, function(err) {
+    if (err) {
+      res.redirect("/photos");
+    } else {
+      res.redirect("/photos");
+    }
+  });
+});
+
 
 //middleware for logged in
 function isLoggedIn(req, res, next) {
