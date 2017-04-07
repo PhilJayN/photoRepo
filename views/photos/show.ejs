@@ -27,14 +27,11 @@
           Submitted by <%= photo.author.username %>
         </p>
 
-        <p>
           <a class="btn btn-xs btn-default" href="/photos/<%= photo._id %>/edit">Edit</a>
-        </p>
 
         <form class="delete-form" action="/photos/<%= photo._id %>?_method=DELETE" method="post">
           <button class="btn btn-xs btn-danger">Delete</button>
         </form>
-
       </div>
 
       <div class="well">
@@ -52,11 +49,8 @@
           <a class="btn btn-default" href="/photos/<%= photo._id %>/comments/new">Add a comment</a>
         </p>
       </div>
-
-
     </div>
   </div>
-
 </div>
 
 <!--
