@@ -56,14 +56,22 @@ router.get('/photos/:id', function (req, res){
 
 //EDIT
 router.get('/photos/:id/edit', function(req, res) {
-  Photo.findById(req.params.id, function(err, foundPhoto) {
-    if (err) {
-      res.redirect('/photos');
-      console.log (err);
-    } else {
-      res.render('photos/edit.ejs', {photo: foundPhoto});
-    }
-  });
+  if (req.isAuthenticated()) {
+    Photo.findById(req.params.id, function(err, foundPhoto) {
+      if (err) {
+        res.redirect('/photos');
+        console.log (err);
+      } else {
+        if (foundPhoto.author.id.equals(req.user._id)) {
+          res.render('photos/edit.ejs', {photo: foundPhoto});
+        } else {
+          res.send("you don't have permission to do that!");
+        }
+      }
+    });
+  } else {
+    res.send("you need to log in first!");
+  }
 });
 
 //UPDATE
