@@ -55,23 +55,10 @@ router.get('/photos/:id', function (req, res){
 });
 
 //EDIT
-router.get('/photos/:id/edit', function(req, res) {
-  if (req.isAuthenticated()) {
+router.get('/photos/:id/edit', checkPhotoOwnership, function(req, res) {
     Photo.findById(req.params.id, function(err, foundPhoto) {
-      if (err) {
-        res.redirect('/photos');
-        console.log (err);
-      } else {
-        if (foundPhoto.author.id.equals(req.user._id)) {
-          res.render('photos/edit.ejs', {photo: foundPhoto});
-        } else {
-          res.send("you don't have permission to do that!");
-        }
-      }
+      res.render('photos/edit.ejs', {photo: foundPhoto});
     });
-  } else {
-    res.send("you need to log in first!");
-  }
 });
 
 //UPDATE
@@ -104,6 +91,25 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   res.redirect('/login');
+}
+
+function checkPhotoOwnership(req, res, next) {
+  if (req.isAuthenticated()) {
+    Photo.findById(req.params.id, function(err, foundPhoto) {
+      if (err) {
+        res.redirect('back');
+        console.log (err);
+      } else {
+        if (foundPhoto.author.id.equals(req.user._id)) {
+          next();
+        } else {
+          res.send("you don't have permission to do that!");
+        }
+      }
+    });
+  } else {
+    res.redirect("back");
+  }
 }
 
 
