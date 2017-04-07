@@ -49,7 +49,6 @@ router.get('/photos/:id', function (req, res){
   });
 });
 
-
 //middleware for logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -57,6 +56,7 @@ function isLoggedIn(req, res, next) {
   }
   res.redirect('/login');
 }
+
 
 router.get('/secret', isLoggedIn, function (req, res) {
   res.render('secret.ejs');

@@ -54,13 +54,6 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-//middleware for logged in
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
 
 router.get('/demo', function (req, res) {
   res.render('demo.ejs');
@@ -70,5 +63,13 @@ router.get('*', function (req, res) {
   // res.redirect('/404');
   res.render('pagenotfound.ejs');
 });
+
+//middleware for logged in
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 module.exports = router;

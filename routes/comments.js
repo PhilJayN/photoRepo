@@ -6,7 +6,7 @@ var Comment = require("../models/comment");
 //ROUTES: COMMENTS
 //NEW
 //show new form to create comments:
-router.get('/photos/:id/comments/new', function(req, res) {
+router.get('/photos/:id/comments/new', isLoggedIn, function(req, res) {
   Photo.findById(req.params.id, function(err, foundPhoto) {
     if (err) {
       console.log(err);
@@ -17,7 +17,7 @@ router.get('/photos/:id/comments/new', function(req, res) {
 });
 
 //CREATE
-router.post('/photos/:id/comments', function(req, res){
+router.post('/photos/:id/comments', isLoggedIn, function(req, res){
   Photo.findById(req.params.id, function(err, photo) {
     if(err) {
       console.log(err);
