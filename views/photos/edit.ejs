@@ -4,12 +4,15 @@
 
 <h1>Edit <%= photo.name %></h1>
 
-  <form action="/photos/<%= photo._id %>/edit?_method" method="POST">
+  <form action="/photos/<%= photo._id %>?_method=PUT" method="POST">
     <div class="form-group">
-      <input type="text" name="comment[text]" class="form-control" placeholder="Text">
+      <input type="text" name="photo[name]" class="form-control" value="<%= photo.name %>">
     </div>
     <div class="form-group">
-      <input type="text" name="comment[author]" class="form-control" placeholder="Author">
+      <input type="text" name="photo[image]" class="form-control" value="<%= photo.image %>">
+    </div>
+    <div class="form-group">
+      <input type="text" name="photo[description]" class="form-control" value="<%= photo.description %>">
     </div>
     <p>
       <button class="btn btn-primary">Submit</button>

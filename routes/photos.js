@@ -62,9 +62,16 @@ router.get('/photos/:id/edit', function(req, res) {
 });
 
 
-router.put('/photos/id', function(req, res) {
+router.put('/photos/:id', function(req, res) {
+  Photo.findByIdAndUpdate(req.params.id, req.body.photo, function(err, updatedPhoto) {
+    if (err) {
+      res.redirect('/photos');
+    } else {
+      res.redirect('/photos/' + req.params.id);
+    }
+  });
 
-})
+});
 
 //UPDATE
 
