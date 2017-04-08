@@ -39,7 +39,7 @@
         <p>
           <% photo.comments.forEach(function(comment){ %>
             <p>
-              <strong><%= comment.author %></strong> : <%= comment.text %>
+              <strong><%= comment.author.username %></strong> : <%= comment.text %>
             </p>
             <a class="btn btn-xs btn-warning"
             href="/photos/<%= photo._id %>/comments/<%= comment._id %>/edit">Edit

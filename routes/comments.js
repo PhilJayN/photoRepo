@@ -26,6 +26,13 @@ router.post('/photos/:id/comments', isLoggedIn, function(req, res){
         if(err) {
           console.log(err);
         } else {
+                    // console.log('user name is: ', req.user.username);
+          //add username and id to comment
+          comment.author.id = req.user._id;
+          comment.author.username = req.user.username;
+          comment.save();
+          console.log('resulting comment', comment);
+
           photo.comments.push(comment);
           photo.save();
           res.redirect("/photos/" + photo._id);
