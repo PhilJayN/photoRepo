@@ -18,7 +18,6 @@ function isLoggedIn(req, res, next) {
   res.redirect('/login');
 }
 
-
 //require routes:
 var photoRoutes = require("./routes/photos");
 var commentRoutes = require("./routes/comments");

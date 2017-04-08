@@ -35,6 +35,25 @@ router.post('/photos/:id/comments', isLoggedIn, function(req, res){
   });
 });
 
+//EDIT
+router.get('/photos/:id/comments/:comment_id/edit', function (req, res) {
+  Comment.findById(req.params.comment_id, function(err, foundComment) {
+    res.render('comments/edit.ejs', {photo_id: req.params.id, comment: foundComment});
+  });
+});
+
+//UPDATE
+router.put('/photos/:id/comments/:comment_id', function (req, res) {
+  Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, foundComment) {
+    if (err) {
+      res.redirect('back');
+    } else {
+      res.redirect('/photos/' + req.params.id);
+    }
+  });
+});
+
+
 //middleware for logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
