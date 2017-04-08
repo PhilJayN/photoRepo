@@ -78,6 +78,7 @@ function checkCommentOwnership(req, res, next) {
       if (err) {
         res.redirect('back');
       } else {
+        console.log('author', foundComment.author.id);
         if (foundComment.author.id.equals(req.user._id)) {
           next();
         } else {
