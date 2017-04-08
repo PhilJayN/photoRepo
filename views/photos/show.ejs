@@ -41,16 +41,17 @@
             <p>
               <strong><%= comment.author %></strong> : <%= comment.text %>
             </p>
-            <a
+            <a class="btn btn-xs btn-warning"
             href="/photos/<%= photo._id %>/comments/<%= comment._id %>/edit">Edit
           </a>
+
+          <form action="/photos/<%= photo.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+            <p>
+              <button class="btn btn-xs btn-danger">Delete</button>
+            </p>
+          </form>
           <% }) %>
         </p>
-
-
-        <!-- router.get('/photos/:id/comments/:commentId/edit', function (req, res) { -->
-
-
 
       </div>
 

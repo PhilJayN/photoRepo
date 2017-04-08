@@ -53,7 +53,17 @@ router.put('/photos/:id/comments/:comment_id', function (req, res) {
   });
 });
 
+//DELETE
+router.delete('/photos/:id/comments/:comment_id', function (req, res) {
+  Comment.findByIdAndRemove(req.params.comment_id, function (err) {
+    if (err) {
+      res.redirect('back');
+    } else {
+      res.redirect('/photos/' + req.params.id);
+    }
+  });
 
+});
 //middleware for logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
