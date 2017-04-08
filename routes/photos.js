@@ -62,7 +62,7 @@ router.get('/photos/:id/edit', checkPhotoOwnership, function(req, res) {
 });
 
 //UPDATE
-router.put('/photos/:id', function(req, res) {
+router.put('/photos/:id', checkPhotoOwnership, function(req, res) {
   Photo.findByIdAndUpdate(req.params.id, req.body.photo, function(err, updatedPhoto) {
     if (err) {
       res.redirect('/photos');
@@ -74,7 +74,7 @@ router.put('/photos/:id', function(req, res) {
 });
 
 //DESTROY
-router.delete('/photos/:id', function(req, res) {
+router.delete('/photos/:id', checkPhotoOwnership, function(req, res) {
   Photo.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       res.redirect("/photos");
