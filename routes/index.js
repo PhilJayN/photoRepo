@@ -11,7 +11,8 @@ router.get('/', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render('landing.ejs');
+      // res.render('landing.ejs');
+      res.redirect('/photos');
     }
   });
 });
@@ -42,7 +43,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate("local", {
-  successRedirect: '/photos/new',
+  successRedirect: '/photos',
   failureRedirect: '/login' //make sure this is /login, and NOT login.ejs. it's a route
 }), function(req, res) {
 });

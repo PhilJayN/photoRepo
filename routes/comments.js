@@ -22,11 +22,12 @@ router.post('/photos/:id/comments', isLoggedIn, function(req, res){
     if(err) {
       console.log(err);
     } else {
+      console.log('req.body.comment input', req.body.comment);
       Comment.create(req.body.comment, function(err, comment) {
         if(err) {
           console.log(err);
         } else {
-                    // console.log('user name is: ', req.user.username);
+          console.log('comment prior:', comment); //shows comment before anything added
           //add username and id to comment
           comment.author.id = req.user._id;
           comment.author.username = req.user.username;
@@ -50,7 +51,7 @@ router.get('/photos/:id/comments/:comment_id/edit', checkCommentOwnership, funct
 });
 
 //UPDATE
-router.put('/photos/:id/comments/:comment_id', function (req, res) {
+router.put('/photos/:id/comments/:comment_id', checkCommentOwnership, function (req, res) {
   Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, foundComment) {
     if (err) {
       res.redirect('back');
@@ -61,7 +62,7 @@ router.put('/photos/:id/comments/:comment_id', function (req, res) {
 });
 
 //DELETE
-router.delete('/photos/:id/comments/:comment_id', function (req, res) {
+router.delete('/photos/:id/comments/:comment_id', checkCommentOwnership, function (req, res) {
   Comment.findByIdAndRemove(req.params.comment_id, function (err) {
     if (err) {
       res.redirect('back');
@@ -89,7 +90,7 @@ function checkCommentOwnership(req, res, next) {
         if (foundComment.author.id.equals(req.user._id)) {
           next();
         } else {
-          res.send("you don't have permission to do that!");
+          res.redirect('back');
         }
       }
     });

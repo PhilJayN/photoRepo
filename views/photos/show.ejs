@@ -41,15 +41,23 @@
             <p>
               <strong><%= comment.author.username %></strong> : <%= comment.text %>
             </p>
-            <a class="btn btn-xs btn-warning"
-            href="/photos/<%= photo._id %>/comments/<%= comment._id %>/edit">Edit
-          </a>
 
-          <form action="/photos/<%= photo.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-            <p>
-              <button class="btn btn-xs btn-danger">Delete</button>
-            </p>
-          </form>
+
+            <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+
+              <a class="btn btn-xs btn-warning"
+              href="/photos/<%= photo._id %>/comments/<%= comment._id %>/edit">Edit
+            </a>
+
+            <form action="/photos/<%= photo.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+              <p>
+                <button class="btn btn-xs btn-danger">Delete</button>
+              </p>
+            </form>
+
+            <% } %>
+
+
           <% }) %>
         </p>
 
