@@ -11,8 +11,10 @@ router.get('/', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render('landing.ejs');
-      // res.redirect('/');
+      //correct render:
+      // res.render('landing.ejs');
+      //render for testing:
+      res.render('photos/index.ejs', {photos: allPhotos});
     }
   });
 });
@@ -55,7 +57,7 @@ router.post('/login', passport.authenticate("local", {
 //ROUTES: LOGOUT
 router.get('/logout', function(req, res) {
   req.logout();
-  req.flash('error', 'logged you out!');
+  req.flash('success', 'logged you out!');
   res.redirect('/');
 });
 
