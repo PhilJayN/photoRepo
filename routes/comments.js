@@ -27,6 +27,7 @@ router.post('/photos/:id/comments', middleware.isLoggedIn, function(req, res){
       console.log('req.body.comment input', req.body.comment);
       Comment.create(req.body.comment, function(err, comment) {
         if(err) {
+          req.flash("error", "Oops! Something went wrong.");
           console.log(err);
         } else {
           console.log('comment prior:', comment); //shows comment before anything added
@@ -38,6 +39,7 @@ router.post('/photos/:id/comments', middleware.isLoggedIn, function(req, res){
 
           photo.comments.push(comment);
           photo.save();
+          req.flash("success", "Successfully added new comment.");
           res.redirect("/photos/" + photo._id);
         }
       });
@@ -69,6 +71,7 @@ router.delete('/photos/:id/comments/:comment_id', middleware.checkCommentOwnersh
     if (err) {
       res.redirect('back');
     } else {
+      req.flash("success", "Comment deleted!");
       res.redirect('/photos/' + req.params.id);
     }
   });

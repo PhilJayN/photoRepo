@@ -30,9 +30,11 @@ router.post('/register', function (req, res) {
   User.register(new User({username: req.body.username}), req.body.password, function(err, user){
     if(err) {
       console.log(err);
+        req.flash("error", err);
       return res.render("register");
     }
     passport.authenticate("local")(req, res, function(){
+      req.flash("success", "Welcome " + user.username + "!");
       res.redirect("/secret");
     });
   });
@@ -57,10 +59,9 @@ router.post('/login', passport.authenticate("local", {
 //ROUTES: LOGOUT
 router.get('/logout', function(req, res) {
   req.logout();
-  req.flash('success', 'logged you out!');
+  req.flash('success', 'You are logged out.');
   res.redirect('/');
 });
-
 
 router.get('/demo', function (req, res) {
   res.render('demo.ejs');
@@ -70,13 +71,5 @@ router.get('*', function (req, res) {
   // res.redirect('/404');
   res.render('pagenotfound.ejs');
 });
-
-//middleware for logged in
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
 
 module.exports = router;
