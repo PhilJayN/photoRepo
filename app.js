@@ -31,6 +31,13 @@ app.use(express.static(__dirname + "/public"));
 var mongoose = require("mongoose");
 // mongoose.connect("mongodb://localhost/photos_app");
 
+
+
+app.set('port', (process.env.PORT || 3000));
+
+
+
+
 var url = process.env.DATABASEURL || "mongodb://localhost/photos_app";
 mongoose.connect(url);
 // mongoose.connect(process.env.DATABASEURL);
@@ -70,6 +77,6 @@ app.use(indexRoutes);
 // app.listen(process.env.PORT, process.env.IP, function () {
 //   console.log('listening on port:', process.env.PORT, process.env.IP);
 // });
-app.listen(3000, function () {
-  console.log('listening on port 3000!');
+app.listen(app.get('port'), function () {
+  console.log('Node app is running on port', app.get('port'));
 });
