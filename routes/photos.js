@@ -2,6 +2,7 @@
 var express = require("express");
 var router = express.Router();
 var Photo = require("../models/photo");
+var middleware = require("../middleware");
 
 //INDEX route: display all photos from DB in index pg
 router.get('/photos', function (req, res) {
@@ -15,13 +16,13 @@ router.get('/photos', function (req, res) {
 });
 
 //NEW Route: Show form to create new photo
-router.get('/photos/new', isLoggedIn, function(req, res){
+router.get('/photos/new', middleware.isLoggedIn, function(req, res){
   res.render('photos/new.ejs');
 });
 
 //CREATE Route: add to DB
 //when there's a POST request to /photos/addPhoto...
-router.post('/photos', isLoggedIn, function (req, res) {
+router.post('/photos', middleware.isLoggedIn, function (req, res) {
   //run these codes:
   var name = req.body.name;
   var image = req.body.image;
@@ -55,14 +56,14 @@ router.get('/photos/:id', function (req, res){
 });
 
 //EDIT
-router.get('/photos/:id/edit', checkPhotoOwnership, function(req, res) {
+router.get('/photos/:id/edit', middleware.checkPhotoOwnership, function(req, res) {
     Photo.findById(req.params.id, function(err, foundPhoto) {
       res.render('photos/edit.ejs', {photo: foundPhoto});
     });
 });
 
 //UPDATE
-router.put('/photos/:id', checkPhotoOwnership, function(req, res) {
+router.put('/photos/:id', middleware.checkPhotoOwnership, function(req, res) {
   Photo.findByIdAndUpdate(req.params.id, req.body.photo, function(err, updatedPhoto) {
     if (err) {
       res.redirect('/photos');
@@ -74,7 +75,7 @@ router.put('/photos/:id', checkPhotoOwnership, function(req, res) {
 });
 
 //DESTROY
-router.delete('/photos/:id', checkPhotoOwnership, function(req, res) {
+router.delete('/photos/:id', middleware.checkPhotoOwnership, function(req, res) {
   Photo.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       res.redirect("/photos");
@@ -84,36 +85,7 @@ router.delete('/photos/:id', checkPhotoOwnership, function(req, res) {
   });
 });
 
-
-//middleware for logged in
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
-
-function checkPhotoOwnership(req, res, next) {
-  if (req.isAuthenticated()) {
-    Photo.findById(req.params.id, function(err, foundPhoto) {
-      if (err) {
-        res.redirect('back');
-        console.log (err);
-      } else {
-        if (foundPhoto.author.id.equals(req.user._id)) {
-          next();
-        } else {
-          res.send("you don't have permission to do that!");
-        }
-      }
-    });
-  } else {
-    res.redirect("back");
-  }
-}
-
-
-router.get('/secret', isLoggedIn, function (req, res) {
+router.get('/secret', middleware.isLoggedIn, function (req, res) {
   res.render('secret.ejs');
   // console.log('user stuff', req.user);
 });

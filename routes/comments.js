@@ -2,11 +2,13 @@ var express = require("express");
 var router = express.Router({mergeParams: true});
 var Photo = require("../models/photo");
 var Comment = require("../models/comment");
+var middleware = require("../middleware");
+
 
 //ROUTES: COMMENTS
 //NEW
 //show new form to create comments:
-router.get('/photos/:id/comments/new', isLoggedIn, function(req, res) {
+router.get('/photos/:id/comments/new', middleware.isLoggedIn, function(req, res) {
   Photo.findById(req.params.id, function(err, foundPhoto) {
     if (err) {
       console.log(err);
@@ -17,7 +19,7 @@ router.get('/photos/:id/comments/new', isLoggedIn, function(req, res) {
 });
 
 //CREATE
-router.post('/photos/:id/comments', isLoggedIn, function(req, res){
+router.post('/photos/:id/comments', middleware.isLoggedIn, function(req, res){
   Photo.findById(req.params.id, function(err, photo) {
     if(err) {
       console.log(err);
@@ -44,14 +46,14 @@ router.post('/photos/:id/comments', isLoggedIn, function(req, res){
 });
 
 //EDIT
-router.get('/photos/:id/comments/:comment_id/edit', checkCommentOwnership, function (req, res) {
+router.get('/photos/:id/comments/:comment_id/edit', middleware.checkCommentOwnership, function (req, res) {
   Comment.findById(req.params.comment_id, function(err, foundComment) {
     res.render('comments/edit.ejs', {photo_id: req.params.id, comment: foundComment});
   });
 });
 
 //UPDATE
-router.put('/photos/:id/comments/:comment_id', checkCommentOwnership, function (req, res) {
+router.put('/photos/:id/comments/:comment_id', middleware.checkCommentOwnership, function (req, res) {
   Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, foundComment) {
     if (err) {
       res.redirect('back');
@@ -62,7 +64,7 @@ router.put('/photos/:id/comments/:comment_id', checkCommentOwnership, function (
 });
 
 //DELETE
-router.delete('/photos/:id/comments/:comment_id', checkCommentOwnership, function (req, res) {
+router.delete('/photos/:id/comments/:comment_id', middleware.checkCommentOwnership, function (req, res) {
   Comment.findByIdAndRemove(req.params.comment_id, function (err) {
     if (err) {
       res.redirect('back');
@@ -72,31 +74,5 @@ router.delete('/photos/:id/comments/:comment_id', checkCommentOwnership, functio
   });
 
 });
-//middleware for logged in
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
-
-function checkCommentOwnership(req, res, next) {
-  if (req.isAuthenticated()) {
-    Comment.findById(req.params.comment_id, function(err, foundComment) {
-      if (err) {
-        res.redirect('back');
-      } else {
-        console.log('author', foundComment.author.id);
-        if (foundComment.author.id.equals(req.user._id)) {
-          next();
-        } else {
-          res.redirect('back');
-        }
-      }
-    });
-  } else {
-    res.redirect("back");
-  }
-}
 
 module.exports = router;
