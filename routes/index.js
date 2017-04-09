@@ -39,7 +39,9 @@ router.post('/register', function (req, res) {
 
 //ROUTES: LOGIN
 router.get('/login', function(req, res) {
-  res.render('login.ejs');
+  // res.render('login.ejs', {message: req.flash("error")});
+  res.render('login.ejs', {message: 'you messed up!'});
+
 });
 
 router.post('/login', passport.authenticate("local", {
