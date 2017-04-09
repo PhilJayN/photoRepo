@@ -27,50 +27,20 @@ router.get('/register', function (req, res) {
 
 //handlers user sign up:
 
-router.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username});
-    User.register(newUser, req.body.password, function(err, user){
-        if(err){
-            // console.log(err);
-            req.flash("error", err.message);
-            return res.redirect("/register");
-        }
-        passport.authenticate("local")(req, res, function(){
-           res.redirect("/photos");
-        });
+router.post('/register', function (req, res) {
+  var newUser = new User({username: req.body.username});
+  User.register(newUser, req.body.password, function(err, user){
+    if(err) {
+      req.flash("error", err.message);
+      return res.redirect("/register");
+    }
+    passport.authenticate("local")(req, res, function(){
+      req.flash("success", "Successfully created new account. Welcome " + user.username + "!");
+      res.redirect("/secret");
     });
+  });
 });
-// router.post('/register', function (req, res) {
-//   var newUser = new User({username: req.body.username});
-//   User.register(newUser, req.body.password, function(err, user){
-//     if(err) {
-//       // console.log(err);
-//         req.flash("error", err);
-//       return res.render("register.ejs");
-//     }
-//     passport.authenticate("local")(req, res, function(){
-//       req.flash("success", "Successfully created new account. Welcome " + user.username + "!");
-//       res.redirect("/secret");
-//     });
-//   });
-// });
 
-
-//
-// router.post('/register', function (req, res) {
-//   User.register(new User({username: req.body.username}), req.body.password, function(err, user){
-//     if(err) {
-//       console.log(err);
-//         req.flash("error", err);
-//       return res.render("register.ejs");
-//     }
-//     passport.authenticate("local")(req, res, function(){
-//       req.flash("success", "Successfully created new account. Welcome " + user.username + "!");
-//       res.redirect("/secret");
-//     });
-//   });
-// });
-//
 
 //ROUTES: LOGIN
 router.get('/login', function(req, res) {
