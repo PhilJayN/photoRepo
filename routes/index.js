@@ -11,8 +11,8 @@ router.get('/', function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      // res.render('landing.ejs');
-      res.redirect('/photos');
+      res.render('landing.ejs');
+      // res.redirect('/');
     }
   });
 });
@@ -40,7 +40,8 @@ router.post('/register', function (req, res) {
 //ROUTES: LOGIN
 router.get('/login', function(req, res) {
   // res.render('login.ejs', {message: req.flash("error")});
-  res.render('login.ejs', {message: 'you messed up!'});
+  // res.render('login.ejs', {message: 'you messed up!'});
+  res.render('login.ejs' );
 
 });
 
@@ -54,6 +55,7 @@ router.post('/login', passport.authenticate("local", {
 //ROUTES: LOGOUT
 router.get('/logout', function(req, res) {
   req.logout();
+  req.flash('error', 'logged you out!');
   res.redirect('/');
 });
 
