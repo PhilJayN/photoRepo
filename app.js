@@ -7,9 +7,11 @@ var Comment = require('./models/comment');
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
+var flash = require("connect-flash");
 
 var methodOveride = require("method-override");
 app.use(methodOveride("_method"));
+app.use(flash());
 //middleware for logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
