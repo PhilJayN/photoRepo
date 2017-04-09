@@ -67,9 +67,9 @@ app.use(commentRoutes);
 app.use(indexRoutes);
 
 
-app.listen(process.env.PORT, process.env.IP, function () {
+// app.listen(process.env.PORT, process.env.IP, function () {
+//   console.log('listening on port:', process.env.PORT, process.env.IP);
+// });
+app.listen(3000, function () {
   console.log('listening on port 3000!');
 });
-// app.listen(3000, function () {
-//   console.log('listening on port 3000!');
-// });
