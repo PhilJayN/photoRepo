@@ -31,10 +31,10 @@ router.post('/register', function (req, res) {
     if(err) {
       console.log(err);
         req.flash("error", err);
-      return res.render("register");
+      return res.render("register.ejs");
     }
     passport.authenticate("local")(req, res, function(){
-      req.flash("success", "Welcome " + user.username + "!");
+      req.flash("success", "Successfully created new account. Welcome " + user.username + "!");
       res.redirect("/secret");
     });
   });
