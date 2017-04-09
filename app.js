@@ -29,7 +29,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/photos_app");
+// mongoose.connect("mongodb://localhost/photos_app");
+mongoose.connect(process.env.DATABASEURL);
+
 
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
