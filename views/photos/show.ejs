@@ -28,40 +28,38 @@
         </p>
 
         <% if (currentUser && photo.author.id.equals(currentUser._id)) { %>
-          <a class="btn btn-xs btn-default" href="/photos/<%= photo._id %>/edit">Edit</a>
+          <a class="edit-style" href="/photos/<%= photo._id %>/edit">Edit</a>
           <form class="delete-form" action="/photos/<%= photo._id %>?_method=DELETE" method="post">
-            <button class="btn btn-xs btn-danger">Delete</button>
+            <button class="del-style">Delete</button>
           </form>
         <% } %>
       </div>
 
-      <div class="well">
-        <p>
           <% photo.comments.forEach(function(comment){ %>
-            <p>
-              <strong><%= comment.author.username %></strong> : <%= comment.text %>
+            <div class="well">
+              <p>
+              <strong><%= comment.author.username %></strong>
             </p>
-
+            <p>
+               <%= comment.text %>
+            </p>
 
             <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
 
-              <a class="btn btn-xs btn-warning"
+              <a class="edit-style"
               href="/photos/<%= photo._id %>/comments/<%= comment._id %>/edit">Edit
             </a>
 
-            <form action="/photos/<%= photo.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-              <p>
-                <button class="btn btn-xs btn-danger">Delete</button>
-              </p>
+            <form class="delete-form" action="/photos/<%= photo.id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                <button class="del-style">Delete</button>
             </form>
 
             <% } %>
 
+          </div>
 
           <% }) %>
-        </p>
 
-      </div>
 
       <div class="well-accent-bar">
         <p>

@@ -70,3 +70,25 @@
 .user-form {
   width: 25%;
 }
+
+.edit-style {
+  text-decoration: none;
+  color: #EC971F;
+  display: inline;
+}
+
+.edit-style:hover {
+  color: #EC971F;
+}
+
+.del-style {
+   border: none;
+   background: none;
+   color: #C9302C;
+   display: inline;
+
+}
+
+.del-style:hover {
+   text-decoration: underline;
+}
