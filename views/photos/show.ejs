@@ -1,12 +1,8 @@
 <% include ../partials/header %>
 
-<h1>Photo Repo</h1>
-
-<div class="container">
-
   <div class="row">
     <div class="col-md-3">
-      Side bar left
+      <!-- Side bar left -->
     </div>
       <div class="col-md-9">
         <div class="thumbnail">
@@ -38,7 +34,7 @@
           <% photo.comments.forEach(function(comment){ %>
             <div class="well">
               <p>
-              <strong><%= comment.author.username %></strong>
+              <strong><%= comment.author.username %></strong
             </p>
             <p>
                <%= comment.text %>
@@ -68,7 +64,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!--
 <div class="container">
