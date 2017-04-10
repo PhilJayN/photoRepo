@@ -23,6 +23,7 @@
           <!--These menu links get collapsed on mobile:-->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+              <li><a class="navbar-brand" href="/">Photo Repo</a></li>
               <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
               <!-- <li><a href="#">About</a></li> -->
             </ul>
@@ -31,7 +32,7 @@
                 <li><a href="/login">Login</a></li>
                 <li><a href="/register">Sign Up</a></li>
               <% } else {%>
-                <li><a href="#">Signed in as <%= currentUser.username %></a></li>
+                <li><a href="#">Signed in as <strong><%= currentUser.username %></strong></a></li>
                 <li><a href="/logout">Logout</a></li>
               <% } %>
             </ul>
