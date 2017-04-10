@@ -19,10 +19,13 @@ body {
 
 .hero-desc {
   font-family: 'Source Sans Pro', sans-serif;
+  margin-bottom: 1em;
 }
 
 .navbar {
    background-color: #B2DFDB;
+   background-color: white;
+
    border-radius: 0;
    color: red;
 }
@@ -121,4 +124,14 @@ body {
 .more-info-style:hover {
   color: #00796B;
   text-decoration: underline;
+}
+
+
+.main-btn {
+   /*text-align: center;*/
+   /*margin: 1.5em auto;*/
+}
+
+.test-btn {
+  width: 25%;
 }
