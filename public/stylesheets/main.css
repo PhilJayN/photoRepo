@@ -66,3 +66,7 @@
 .delete-form {
   display: inline;
 }
+
+.user-form {
+  width: 25%;
+}
