@@ -6,6 +6,7 @@
 body {
   background-color: #F4F7F6;
   font-family: 'Source Sans Pro', sans-serif;
+  color: #576578;
 }
 
 .jumbotron  {
@@ -21,7 +22,7 @@ body {
 }
 
 .navbar {
-   background-color: #80CBC4;
+   background-color: #B2DFDB;
    border-radius: 0;
    color: red;
 }
@@ -34,11 +35,12 @@ body {
   color: rgb(68, 68, 68);
 }
 
-
-
 .btn-info {
+  padding-left: 2.5em;
+  padding-right: 2.5em;
   color: rgb(68, 68, 68);
-  background-color: #80CBC4;
+  background-color: #4DB6AC;
+  color: white;
 }
 
 .btn-info:hover{
@@ -46,12 +48,15 @@ body {
 }
 
 .btn-primary {
+  width: 100%;
   color: rgb(68, 68, 68);
-  background-color: #7DB0D8;
+  background-color: #64B5F6;
+  color: white;
+  border: none;
 }
 
 .btn-primary:hover{
-  background-color: #7EB1D9;
+  background-color: #42A5F5;
 }
 
 .form-control:focus {
