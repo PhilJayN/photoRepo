@@ -6,21 +6,22 @@
     </div>
       <div class="col-md-9">
         <div class="thumbnail">
-        <p>
-          <%= photo.name %>
-        </p>
 
         <p>
           <img class="img-responsive" src="  <%= photo.image %> " alt="" />
         </p>
 
         <div class="caption-full">
+          <h3>
+            <%= photo.name %>
+          </h3>
+
           <p>
             <%= photo.description %>
           </p>
         </div>
         <p>
-          Submitted by <%= photo.author.username %>
+          <em>Submitted by <%= photo.author.username %></em>
         </p>
 
         <% if (currentUser && photo.author.id.equals(currentUser._id)) { %>
