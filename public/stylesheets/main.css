@@ -3,6 +3,10 @@
 /*Borders: #7DB0D8*/
 /*Primary btn: */
 
+body {
+  background-color: #F4F7F6;
+}
+
 .navbar {
    background-color: #80CBC4;
    border-radius: 0;
@@ -41,21 +45,20 @@
   border-color: #7DD87E;
 }
 
-
-/*.pink {
-  background: pink;
-  border: 1px solid red;
-}*/
+.caption-full {
+ padding: 1.5em;
+}
 
 
 .well {
-  background-color: #EAEAE8;
+  padding: 1.5em;
+  background-color: #FFFFFF;
    margin-bottom: .5em;
 }
 
 .well-accent-bar {
   padding: 1.5em;
-  background-color: #E9E4DE;
+  background-color: #FFFFFF;
   border-radius: 4px;
 }
 
@@ -91,4 +94,13 @@
 
 .del-style:hover {
    text-decoration: underline;
+}
+
+.more-info-style {
+  color: #26A69A;
+}
+
+.more-info-style:hover {
+  color: #00796B;
+  text-decoration: underline;
 }
