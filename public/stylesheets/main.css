@@ -5,6 +5,19 @@
 
 body {
   background-color: #F4F7F6;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.jumbotron  {
+  background-color: #FFFFFF;
+}
+
+.hero-text {
+  font-family: 'Oswald', sans-serif;
+}
+
+.hero-desc {
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .navbar {
@@ -17,11 +30,11 @@ body {
   color: rgb(68, 68, 68);
 }
 
-
 .navbar-nav {
   color: rgb(68, 68, 68);
-
 }
+
+
 
 .btn-info {
   color: rgb(68, 68, 68);
