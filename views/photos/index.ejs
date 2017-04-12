@@ -17,17 +17,19 @@
           <% photos.forEach(function(photo){ %>
               <div class="col-md-3 col-sm-4">
 
-                  <div class="thumbnail-sm">
-                      <a class="more-info-style" href="photos/<%= photo._id %>">
-                        <img href="photos/<%= photo._id %>" src="<%= photo.image %>"/>
-                      </a>
+                <div class="img-wrapper">
+                  <div class="image size-fixed scale-fill" style="background-image: url(<%= photo.image %>);">
+                    <img src="<%= photo.image %>" alt="Orientation: Square" width="400" height="400"></div>
+                    <a class="more-info-style" href="photos/<%= photo._id %>"><%= photo.name %></a>
+                </div>
 
-                  </div>
 
                   <!-- <a class="more-info-style" href="photos/<%= photo._id %>">clik</a> -->
 
 
                     <!--during creation, every anchor tag has a ref to its own id-->
+
+
 
               </div><!--end of col-->
 
