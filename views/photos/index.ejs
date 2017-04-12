@@ -1,10 +1,10 @@
 <% include ../partials/header %>
 
+<div class="container">
 
   <div class="jumbotron">
     <h1 class="hero-text">Photo Repo</h1>
     <h3 class="hero-desc">
-      <!-- View and join the conversation of user submitted photos. -->
       View photos. Post comments. Rinse and repeat.
     </h3>
     <div class="main-btn">
@@ -12,24 +12,25 @@
     </div>
   </div>
 
-  <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-         <!--campgrounds is a collection from the yelp_camp DB-->
-        <% photos.forEach(function(photo){ %>
+    <div class="row">
+           <!--campgrounds is a collection from the yelp_camp DB-->
+          <% photos.forEach(function(photo){ %>
+              <div class="col-md-3 col-sm-6">
+                  <div class="thumbnail">
+                     <img src="<%= photo.image %>">
+                  </div>
 
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                   <img src="<%= photo.image %>">
-                   <div class="caption">
-                       <h4><%= photo.name %></h4>
-                   </div>
-                   <p>
-                     <!--during creation, every anchor tag has a ref to its own id-->
-                     <a class="more-info-style" href="photos/<%= photo._id %>">More info</a>
-                   </p>
-                </div>
-            </div>
+                  <p>
+                    <!--during creation, every anchor tag has a ref to its own id-->
+                    <!-- <a class="more-info-style" href="photos/<%= photo._id %>">More info</a> -->
+                  </p>
 
-        <% }); %>
-    </div>
+              </div><!--end of col-->
+
+
+          <% }); %>
+      </div>
+
+</div>
 
 <% include ../partials/footer %>
