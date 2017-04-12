@@ -167,26 +167,16 @@ body {
 }
 
 .thumbnail-sm {
-  margin: 33px auto;
+  margin: 1.2em auto;
   padding: 100px;
 }
 
 
+@media only screen and (min-width: 1025px) {
 
+  .wrap {
+    width: 50%;
+    margin: 0 auto;
+  }
 
-/*.holder {
-   border: 1px solid green;
-}*/
-
-/*.jumbotron {
-   border: 1px solid blue;
 }
-
-.container {
-border: 2px solid black;
-}
-
-.row-wrapper {
-   border: 1px solid red;
-   width: 100%;
-}*/

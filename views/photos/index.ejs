@@ -15,7 +15,7 @@
     <div class="row">
            <!--campgrounds is a collection from the yelp_camp DB-->
           <% photos.forEach(function(photo){ %>
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-4">
                   <div class="thumbnail-sm">
                       <a class="more-info-style" href="photos/<%= photo._id %>">
                         <img href="photos/<%= photo._id %>" src="<%= photo.image %>"/>
