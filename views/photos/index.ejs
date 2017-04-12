@@ -1,6 +1,5 @@
 <% include ../partials/header %>
 
-<div class="container">
 
   <div class="jumbotron">
     <h1 class="hero-text">Photo Repo</h1>
@@ -19,7 +18,8 @@
 
                 <div class="img-wrapper">
                   <div class="image size-fixed scale-fill" style="background-image: url(<%= photo.image %>);">
-                    <img src="<%= photo.image %>" alt="Orientation: Square" width="400" height="400"></div>
+                    <img src="<%= photo.image %>" alt="Orientation: Square" width="400" height="400">
+                  </div>
                     <a class="more-info-style" href="photos/<%= photo._id %>"><%= photo.name %></a>
                 </div>
 
@@ -29,14 +29,12 @@
 
                     <!--during creation, every anchor tag has a ref to its own id-->
 
-
-
-              </div><!--end of col-->
-
+              </div>
+              <!--end of col-->
 
           <% }); %>
-      </div>
 
-</div>
+
+      </div>
 
 <% include ../partials/footer %>

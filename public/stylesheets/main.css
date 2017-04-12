@@ -119,6 +119,8 @@ body {
 }
 
 .more-info-style {
+  display: block;
+  padding: 2px;
   color: #26A69A;
 }
 
@@ -128,16 +130,10 @@ body {
 }
 
 
-.main-btn {
-   /*text-align: center;*/
-   /*margin: 1.5em auto;*/
+.row {
+  margin: 0 auto;
+   border: 1px solid blue;
 }
-
-
-
-
-
-
 
 
 
@@ -148,15 +144,7 @@ body {
   margin: 23px;
  border: 1px solid silver;
    display: inline-block;
-}
-
-p {
-  padding: 2px;
-}
-
-img {
-   border: 3px solid green;
-  padding: 88px;
+   margin: 0 auto;
 }
 
 .image {
