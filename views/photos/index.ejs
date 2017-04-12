@@ -16,14 +16,17 @@
            <!--campgrounds is a collection from the yelp_camp DB-->
           <% photos.forEach(function(photo){ %>
               <div class="col-md-3 col-sm-6">
-                  <div class="thumbnail">
-                     <img src="<%= photo.image %>">
+                  <div class="thumbnail-sm">
+                      <a class="more-info-style" href="photos/<%= photo._id %>">
+                        <img href="photos/<%= photo._id %>" src="<%= photo.image %>"/>
+                      </a>
+
                   </div>
 
-                  <p>
+                  <!-- <a class="more-info-style" href="photos/<%= photo._id %>">clik</a> -->
+
+
                     <!--during creation, every anchor tag has a ref to its own id-->
-                    <!-- <a class="more-info-style" href="photos/<%= photo._id %>">More info</a> -->
-                  </p>
 
               </div><!--end of col-->
 
