@@ -14,9 +14,9 @@
     <div class="row">
            <!--campgrounds is a collection from the yelp_camp DB-->
           <% photos.forEach(function(photo){ %>
-              <div class="col-md-3 col-sm-4">
+              <div class="col-md-3 col-sm-4 col-xs-12 column">
 
-                <div class="img-wrapper">
+                <div class="img-border">
                   <div class="image size-fixed scale-fill" style="background-image: url(<%= photo.image %>);">
                     <img src="<%= photo.image %>" alt="Orientation: Square" width="400" height="400">
                   </div>
