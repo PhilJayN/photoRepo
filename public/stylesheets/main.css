@@ -126,6 +126,10 @@ body {
   color: #26A69A;
 }
 
+.move-route {
+  margin-top: 15px;
+}
+
 .more-info-style:hover {
   color: #00796B;
   text-decoration: underline;
