@@ -198,3 +198,8 @@ body {
   }
 
 }
+
+#clickable-img {
+  display: block;
+  text-indent: -9999px;
+}

@@ -16,24 +16,24 @@
           <% photos.forEach(function(photo){ %>
               <div class="col-md-3 col-sm-4 col-xs-12 column">
 
-                <div class="img-border">
+                <!-- <div class="img-border">
                   <div class="image size-fixed scale-fill" style="background-image: url(<%= photo.image %>);">
                     <img src="<%= photo.image %>" alt="Orientation: Square" width="400" height="400">
                   </div>
                     <a class="more-info-style" href="photos/<%= photo._id %>"><%= photo.name %></a>
+                </div> -->
+
+                <div class="img-border">
+                  <a href="photos/<%= photo._id %>" id="clickable-img"class="image size-fixed scale-fill" style="background-image: url(<%= photo.image %>);">
+                    <!-- <img src="<%= photo.image %>" alt="Orientation: Square" width="400" height="400"> -->
+                  </a>
+                    <a class="more-info-style" href="photos/<%= photo._id %>"><%= photo.name %></a>
                 </div>
-
-
-                  <!-- <a class="more-info-style" href="photos/<%= photo._id %>">clik</a> -->
-
-
-                    <!--during creation, every anchor tag has a ref to its own id-->
 
               </div>
               <!--end of col-->
 
           <% }); %>
-
 
       </div>
 
